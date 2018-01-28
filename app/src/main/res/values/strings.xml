@@ -16,4 +16,8 @@
     <string name="tie_games">Tie games</string>
     <string name="reset_counts">RESET COUNTS</string>
     <string name="zero">0</string>
+    <string name="counts_are_reset">Counts are reset</string>
+    <string name="phone_wins">Phone wins!</string>
+    <string name="you_win">You win!</string>
+    <string name="its_a_tie">It\'s a tie!</string>
 </resources>

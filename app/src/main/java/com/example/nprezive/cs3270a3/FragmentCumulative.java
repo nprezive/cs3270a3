@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
@@ -28,11 +29,20 @@ public class FragmentCumulative extends Fragment {
         rootView.findViewById(R.id.btn_reset_counts).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Reset private variables
                 gamesPlayed = phoneWins = myWins = tieWins = 0;
+
+                //Reset TextViews
                 ((TextView)rootView.findViewById(R.id.txv_games_played)).setText(R.string.zero);
                 ((TextView)rootView.findViewById(R.id.txv_my_wins)).setText(R.string.zero);
                 ((TextView)rootView.findViewById(R.id.txv_phone_wins)).setText(R.string.zero);
                 ((TextView)rootView.findViewById(R.id.txv_tie_wins)).setText(R.string.zero);
+
+                //Reset button background colors
+
+                //Display Toast
+                Toast.makeText(getContext(), R.string.counts_are_reset, Toast.LENGTH_SHORT)
+                        .show();
             }
         });
         return rootView;

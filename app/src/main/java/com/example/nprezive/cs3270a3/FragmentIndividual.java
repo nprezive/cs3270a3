@@ -2,12 +2,14 @@ package com.example.nprezive.cs3270a3;
 
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 /**
@@ -15,9 +17,9 @@ import android.widget.Button;
  */
 public class FragmentIndividual extends Fragment {
 
-
     OnGameBtnSelectedListener mCallback;
     Button btnRock, btnPaper, btnScissors;
+    View rootView;
 
     public FragmentIndividual() {
         // Required empty public constructor
@@ -26,7 +28,6 @@ public class FragmentIndividual extends Fragment {
     public interface OnGameBtnSelectedListener {
         public void onGameBtnClicked(Winner winner);
     }
-
 
     @Override
     public void onAttach(Context context){
@@ -46,7 +47,7 @@ public class FragmentIndividual extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_individual, container, false);
+        rootView = inflater.inflate(R.layout.fragment_individual, container, false);
 
         btnRock = rootView.findViewById(R.id.btn_rock);
         btnPaper = rootView.findViewById(R.id.btn_paper);
@@ -54,22 +55,74 @@ public class FragmentIndividual extends Fragment {
 
         btnRock.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { mCallback.onGameBtnClicked(whoWon(Choice.ROCK)); }
+            public void onClick(View view) {
+                resetState();
+                btnRock.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                setTxvsByChoice(Choice.ROCK);
+            }
         });
+
         btnPaper.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { mCallback.onGameBtnClicked(whoWon(Choice.PAPER)); }
+            public void onClick(View view) {
+                resetState();
+                btnPaper.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                setTxvsByChoice(Choice.PAPER);
+            }
         });
+
         btnScissors.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { mCallback.onGameBtnClicked(whoWon(Choice.SCISSORS)); }
+            public void onClick(View view) {
+                resetState();
+                btnScissors.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                setTxvsByChoice(Choice.SCISSORS);
+            }
         });
 
         return rootView;
     }
 
-    private Winner whoWon(Choice playerChoice) {
+    private void setTxvsByChoice(Choice playerChoice) {
+        //Display phone's choice
         Choice phoneChoice = Choice.values()[(int)(Math.random() * 3)];
+        switch (phoneChoice) {
+            case ROCK:
+                ((TextView)rootView.findViewById(R.id.txv_phone_pick))
+                        .setText(R.string.rock);
+                break;
+            case PAPER:
+                ((TextView)rootView.findViewById(R.id.txv_phone_pick))
+                        .setText(R.string.paper);
+                break;
+            case SCISSORS:
+                ((TextView)rootView.findViewById(R.id.txv_phone_pick))
+                        .setText(R.string.scissors);
+                break;
+        }
+
+        //Display winner
+        Winner winner = whoWon(playerChoice, phoneChoice);
+        switch (winner) {
+            case PHONE:
+                ((TextView)rootView.findViewById(R.id.txv_game_result))
+                        .setText(R.string.phone_wins);
+                break;
+            case ME:
+                ((TextView)rootView.findViewById(R.id.txv_game_result))
+                        .setText(R.string.you_win);
+                break;
+            case TIE:
+                ((TextView)rootView.findViewById(R.id.txv_game_result))
+                        .setText(R.string.its_a_tie);
+                break;
+        }
+
+        //Callback to Activity with winner info
+        mCallback.onGameBtnClicked(winner);
+    }
+
+    private Winner whoWon(Choice playerChoice, Choice phoneChoice) {
         switch (playerChoice) {
             case ROCK:
                 switch (phoneChoice) {
@@ -91,6 +144,14 @@ public class FragmentIndividual extends Fragment {
                 }
             default: return null;
         }
+    }
+
+    private void resetState() {
+        btnRock.setBackgroundColor(Color.TRANSPARENT);
+        btnPaper.setBackgroundColor(Color.TRANSPARENT);
+        btnScissors.setBackgroundColor(Color.TRANSPARENT);
+        ((TextView)rootView.findViewById(R.id.txv_phone_pick)).setText(R.string.question_mark);
+        ((TextView)rootView.findViewById(R.id.txv_game_result)).setText(R.string.default_result);
     }
 
     public enum Choice {ROCK, PAPER, SCISSORS}

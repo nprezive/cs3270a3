@@ -51,6 +51,7 @@
             android:layout_height="wrap_content"
             android:text="@string/phone_pick"/>
         <TextView
+            android:id="@+id/txv_phone_pick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/question_mark"
@@ -59,7 +60,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/game_result"
+        android:id="@+id/txv_game_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/default_result"
