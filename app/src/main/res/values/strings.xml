@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">CS3270A3 Preszler</string>
+    <string name="game_caption">Rock, Paper, Scissors</string>
+    <string name="game_sub_caption">By Noah Preszler</string>
+    <string name="rock">Rock</string>
+    <string name="paper">Paper</string>
+    <string name="my_pick">My Pick:</string>
+    <string name="scissors">Scissors</string>
+    <string name="phone_pick">Phone Pick:</string>
+    <string name="question_mark">\?</string>
+    <string name="default_result">-</string>
+
+    <string name="games_played">Games Played</string>
+    <string name="phone_win_count_label">Phone win count</string>
+    <string name="my_win_count_label">My win count</string>
+    <string name="tie_games">Tie games</string>
+    <string name="reset_counts">RESET COUNTS</string>
+    <string name="zero">0</string>
+</resources>
