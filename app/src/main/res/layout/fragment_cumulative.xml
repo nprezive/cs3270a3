@@ -19,6 +19,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="@string/games_played"/>
 
             <TextView
@@ -48,24 +49,28 @@
                 android:id="@+id/txv_games_played"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="@string/zero"/>
 
             <TextView
                 android:id="@+id/txv_phone_wins"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
                 android:text="@string/zero"/>
 
             <TextView
                 android:id="@+id/txv_my_wins"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
                 android:text="@string/zero"/>
 
             <TextView
                 android:id="@+id/txv_tie_wins"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
                 android:text="@string/zero"/>
 
         </LinearLayout>
