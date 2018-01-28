@@ -2,6 +2,7 @@ package com.example.nprezive.cs3270a3;
 
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -49,7 +50,7 @@ public class FragmentIndividual extends Fragment {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_individual, container, false);
 
-        btnRock = rootView.findViewById(R.id.btn_rock);
+        btnRock = (Button)rootView.findViewById(R.id.btn_rock);
         btnPaper = rootView.findViewById(R.id.btn_paper);
         btnScissors = rootView.findViewById(R.id.btn_scissors);
 
@@ -57,7 +58,7 @@ public class FragmentIndividual extends Fragment {
             @Override
             public void onClick(View view) {
                 resetState();
-                btnRock.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                btnRock.setBackgroundTintList(getResources().getColorStateList(R.color.colorAccent));
                 setTxvsByChoice(Choice.ROCK);
             }
         });
@@ -66,7 +67,7 @@ public class FragmentIndividual extends Fragment {
             @Override
             public void onClick(View view) {
                 resetState();
-                btnPaper.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                btnPaper.setBackgroundTintList(getResources().getColorStateList(R.color.colorAccent));
                 setTxvsByChoice(Choice.PAPER);
             }
         });
@@ -75,7 +76,7 @@ public class FragmentIndividual extends Fragment {
             @Override
             public void onClick(View view) {
                 resetState();
-                btnScissors.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                btnScissors.setBackgroundTintList(getResources().getColorStateList(R.color.colorAccent));
                 setTxvsByChoice(Choice.SCISSORS);
             }
         });
@@ -147,9 +148,9 @@ public class FragmentIndividual extends Fragment {
     }
 
     private void resetState() {
-        btnRock.setBackgroundColor(Color.TRANSPARENT);
-        btnPaper.setBackgroundColor(Color.TRANSPARENT);
-        btnScissors.setBackgroundColor(Color.TRANSPARENT);
+        btnRock.setBackgroundTintList(ColorStateList.valueOf(Color.LTGRAY));
+        btnPaper.setBackgroundTintList(ColorStateList.valueOf(Color.LTGRAY));
+        btnScissors.setBackgroundTintList(ColorStateList.valueOf(Color.LTGRAY));
         ((TextView)rootView.findViewById(R.id.txv_phone_pick)).setText(R.string.question_mark);
         ((TextView)rootView.findViewById(R.id.txv_game_result)).setText(R.string.default_result);
     }
